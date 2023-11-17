@@ -25,7 +25,8 @@ export default function Home() {
   }>({
     messages: [
       {
-        message: 'Hi, what would you like to learn about this document?',
+        message:
+          'Welcome to the AVER Proposal Extractor. What questions do you have about our proposals?',
         type: 'apiMessage',
       },
     ],
@@ -137,10 +138,10 @@ export default function Home() {
                     icon = (
                       <Image
                         key={index}
-                        src="/bot-image.png"
-                        alt="AI"
-                        width="40"
-                        height="40"
+                        src="/AVER_rw-300x95.png"
+                        alt="AVER"
+                        width="60"
+                        height="60"
                         className={styles.boticon}
                         priority
                       />
@@ -224,7 +225,7 @@ export default function Home() {
                     placeholder={
                       loading
                         ? 'Waiting for response...'
-                        : 'What is this legal case about?'
+                        : 'Please type your question here.'
                     }
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
@@ -261,8 +262,9 @@ export default function Home() {
           </main>
         </div>
         <footer className="m-auto p-4">
-          <a href="https://twitter.com/mayowaoshin">
-            Powered by LangChainAI. Demo built by Mayo (Twitter: @mayowaoshin).
+          <a href="mailto://jarrett.goldfedder@avercg.com">
+            Powered by LangChainAI. Demo built by Jarrett Goldfedder based on
+            code from @mayowaoshin.
           </a>
         </footer>
       </Layout>

@@ -14,6 +14,24 @@ const CONDENSE_TEMPLATE = `Given the following conversation and a follow up ques
 Follow Up Input: {question}
 Standalone question:`;
 
+/*const QA_TEMPLATE = `You are an advanced analysis tool designed to review and interpret proposals.
+Your primary function is to pinpoint and consolidate sections of all pieces of context that directly address user queries.
+In response to user questions, your task is to reference specific parts of the proposal and the names of the files the information comes from, ensuring that the information are the most pertinent, concise and relevant.
+If you don't know the answer, just say you don't know. DO NOT try to make up an answer.
+If the question is not related to the context or chat history, politely respond that you are tuned to only answer questions that are related to the context.
+
+<context>
+  {context}
+</context>
+
+<chat_history>
+  {chat_history}
+</chat_history>
+
+Question: {question}
+Helpful answer:`; //in markdown:`;*/
+
+
 const QA_TEMPLATE = `You are an expert researcher. Use the following pieces of context to answer the question at the end.
 If you don't know the answer, just say you don't know. DO NOT try to make up an answer.
 If the question is not related to the context or chat history, politely respond that you are tuned to only answer questions that are related to the context.
@@ -27,7 +45,8 @@ If the question is not related to the context or chat history, politely respond 
 </chat_history>
 
 Question: {question}
-Helpful answer in markdown:`;
+Helpful answer in Word format:`;
+
 
 const combineDocumentsFn = (docs: Document[], separator = '\n\n') => {
   const serializedDocs = docs.map((doc) => doc.pageContent);
@@ -41,7 +60,8 @@ export const makeChain = (retriever: VectorStoreRetriever) => {
 
   const model = new ChatOpenAI({
     temperature: 0, // increase temperature to get more creative answers
-    modelName: 'gpt-3.5-turbo', //change this to gpt-4 if you have access
+    //modelName: 'gpt-3.5-turbo-1106', //change this to gpt-4 if you have access
+    modelName: 'gpt-4', //change this to gpt-4 if you have access
   });
 
   // Rephrase the initial question into a dereferenced standalone question based on
